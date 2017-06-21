@@ -57,3 +57,29 @@ public class PagoRecurrente {
 			}
 			return fecha_actual;
 		}
+		public static List<LocalDate> obtener_fecha_pagos(LocalDate fecha_inicial,int num_pagos,String num_dias) throws OpcionNoExisteException { 
+  
+  LocalDate fecha_actual;  // Lista tipo fecha
+  List<LocalDate> listaFechas = new ArrayList<LocalDate>();
+    
+  fecha_actual= calcularSiguiente(num_dias, fecha_inicial); //Se asigna el parametro de fecha al atributo para que el valor del mismo pueda cambiar
+
+  for(int i=1;i<=num_pagos;i++) {
+
+    if (fecha_actual.getDayOfWeek() != DayOfWeek.SUNDAY) 
+      listaFechas.add(fecha_actual); // Añade fechas a la lista
+      //
+    else 
+
+      if(num_dias != "1") // Si es domingo y el pago es diario, se salta el pago, sino paga el dia anterior
+        {listaFechas.add(fecha_actual.minusDays(1)); 
+        
+        }
+      else 
+        i--;
+
+    fecha_actual= calcularSiguiente(num_dias, fecha_actual); //Se hace el llamado a la funcion para guardar la siguiente fecha y agregarla a la lista.
+  }
+  return listaFechas; //Retorna la lista con las fechas añadidas.
+} 
+}
