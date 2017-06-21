@@ -1,0 +1,127 @@
+	/**************************************************************************/
+	/*    ARCHIVO: Recurrente.java                                            */ 
+	/*    NOMBRE LOGICO: Recurrente                                           */
+	/*    PRODUCTO: Banca en Linea                                            */
+	/**************************************************************************/
+	/*                     IMPORTANTE                                         */
+	/* Este programa fue disenado por Banco General, S.A., y esta protegido   */
+	/* por los derechos de propiedad intelectual.  Su uso no autorizado queda */
+	/* expresamente prohibido de acuerdo a la legislacion vigente, asi como   */
+	/* obtener una copia (total o parcial) para fines ajenos al banco, sin el */
+	/* consentimiento de la Vice Presidencia Ejecutiva del Banco General, S.A.*/
+	/**************************************************************************/
+	/*                          PROPOSITO                                     */
+	/*Aplicacion que permite calcular la fecha de los pagos recurrentes       */
+	/*de acuerdo al modelo especificado por el cliente.                       */ 
+	/****************************  MODIFICACIONES  ****************************/
+	/*   FECHA               AUTOR                  RAZON                     */
+	/* 10-6-2016	Christopher Mitchell	Adecuaciones técnicas             */
+	/* 28-7-2016	Christopher Mitchell	Cambio de nombre a paquete        */
+	/**************************************************************************/
+package com.bgeneral.canales.pagorecurrente;
+
+import java.time.LocalDate;  
+import java.util.ArrayList;
+import java.util.List;
+import java.time.DayOfWeek;
+import java.time.temporal.TemporalAdjusters;
+
+public class PagoRecurrente {
+
+		private static LocalDate calcularSiguiente(String num_dias,  LocalDate fecha_actual) throws OpcionNoExisteException {
+			
+			switch (num_dias) {
+			
+			case "1": // DIARIO
+				fecha_actual  = fecha_actual.plusDays(1);
+				break;
+
+			case "15": // ANUAL 
+				fecha_actual  = fecha_actual.plusYears(1);
+				break;
+
+			case "16": // SEMANAL
+				fecha_actual  = fecha_actual.plusWeeks(1); 
+				break;
+
+			case "2": // QUINCENAL 
+				
+				//fecha_actual = fecha_actual.plusDays(15) ;
+				fecha_actual = Manejar_Fechas(fecha_actual);
+				break;
+
+			case "4": // MENSUAL 
+				fecha_actual  = fecha_actual.plusMonths(1);
+				break;
+
+			case "5": // BIMESTRAL 
+				fecha_actual  = fecha_actual.plusMonths(2);
+				break;
+
+			case "6": // TRIMESTRAL
+				fecha_actual  = fecha_actual.plusMonths(3);
+				break;
+				
+			case "7": // CUATRIMESTRAL
+				fecha_actual  = fecha_actual.plusMonths(4);
+				break;
+				
+			case "9": // SEMESTRAL
+				fecha_actual  = fecha_actual.plusMonths(6);
+				break;
+				
+			default:
+				//throw new Exception("Opcion no existente." );
+				throw new OpcionNoExisteException("No existe la opcion seleccionada");
+			}
+			return fecha_actual;
+		}
+
+		public static List<LocalDate> obtener_fecha_pagos(LocalDate fecha_inicial,int num_pagos,String num_dias) throws OpcionNoExisteException { 
+			
+			LocalDate fecha_actual;  // Lista tipo fecha
+			List<LocalDate> listaFechas = new ArrayList<LocalDate>();
+			  
+			fecha_actual= calcularSiguiente(num_dias, fecha_inicial); //Se asigna el parametro de fecha al atributo para que el valor del mismo pueda cambiar
+
+			for(int i=1;i<=num_pagos;i++) {
+				if (fecha_actual.getDayOfWeek() != DayOfWeek.SUNDAY) 
+					{   
+						if (fecha_actual.getDayOfMonth()< 15)
+						{listaFechas.add(fecha_actual.plusDays(1));} // Añade fechas a la lista
+						else if (fecha_actual.getDayOfMonth()>= 15){}
+					}
+					//
+				else 
+
+					if(num_dias != "1" ) // Si es domingo y el pago es diario, se salta el pago, sino paga el dia anterior
+						
+						{   if (fecha_actual.getDayOfMonth()> 15)
+								{listaFechas.add(fecha_actual.minusDays(1));
+								
+								}
+							else listaFechas.add(fecha_actual.plusDays(1));
+						}
+					else 
+						i--;
+	
+				fecha_actual= calcularSiguiente(num_dias, fecha_actual); //Se hace el llamado a la funcion para guardar la siguiente fecha y agregarla a la lista.
+			}
+			return listaFechas; //Retorna la lista con las fechas añadidas.
+		} 
+		
+		public static LocalDate Manejar_Fechas (LocalDate fecha_inicial)
+		{   LocalDate fecha_aux, fecha_ini;
+			fecha_ini = fecha_inicial;
+			fecha_aux = fecha_ini;
+			fecha_ini = fecha_ini.plusDays(15);
+			fecha_aux = fecha_aux.plusMonths(1);
+			System.out.println(fecha_aux);
+			//System.out.println(fecha_ini);
+			
+			
+				
+			return fecha_ini;
+		}
+	}
+
