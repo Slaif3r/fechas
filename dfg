@@ -1,0 +1,59 @@
+
+package com.bgeneral.canales.pagorecurrente;
+
+import java.time.LocalDate;  
+import java.util.ArrayList;
+import java.util.List;
+import java.time.DayOfWeek;
+import java.time.temporal.TemporalAdjusters;
+
+public class PagoRecurrente {
+
+		private static LocalDate calcularSiguiente(String num_dias,  LocalDate fecha_actual) throws OpcionNoExisteException {
+			
+			switch (num_dias) {
+			
+			case "1": // DIARIO
+				fecha_actual  = fecha_actual.plusDays(1);
+				break;
+
+			case "15": // ANUAL 
+				fecha_actual  = fecha_actual.plusYears(1);
+				break;
+
+			case "16": // SEMANAL
+				fecha_actual  = fecha_actual.plusWeeks(1); 
+				break;
+
+			case "2": // QUINCENAL 
+				
+				//fecha_actual = fecha_actual.plusDays(15) ;
+				fecha_actual = Manejar_Fechas(fecha_actual);
+				break;
+
+			case "4": // MENSUAL 
+				fecha_actual  = fecha_actual.plusMonths(1);
+				break;
+
+			case "5": // BIMESTRAL 
+				fecha_actual  = fecha_actual.plusMonths(2);
+				break;
+
+			case "6": // TRIMESTRAL
+				fecha_actual  = fecha_actual.plusMonths(3);
+				break;
+				
+			case "7": // CUATRIMESTRAL
+				fecha_actual  = fecha_actual.plusMonths(4);
+				break;
+				
+			case "9": // SEMESTRAL
+				fecha_actual  = fecha_actual.plusMonths(6);
+				break;
+				
+			default:
+				//throw new Exception("Opcion no existente." );
+				throw new OpcionNoExisteException("No existe la opcion seleccionada");
+			}
+			return fecha_actual;
+		}
