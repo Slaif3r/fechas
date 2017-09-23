@@ -1,23 +1,4 @@
-	/**************************************************************************/
-	/*    ARCHIVO: Recurrente.java                                            */ 
-	/*    NOMBRE LOGICO: Recurrente                                           */
-	/*    PRODUCTO: Banca en Linea                                            */
-	/**************************************************************************/
-	/*                     IMPORTANTE                                         */
-	/* Este programa fue disenado por Banco General, S.A., y esta protegido   */
-	/* por los derechos de propiedad intelectual.  Su uso no autorizado queda */
-	/* expresamente prohibido de acuerdo a la legislacion vigente, asi como   */
-	/* obtener una copia (total o parcial) para fines ajenos al banco, sin el */
-	/* consentimiento de la Vice Presidencia Ejecutiva del Banco General, S.A.*/
-	/**************************************************************************/
-	/*                          PROPOSITO                                     */
-	/*Aplicacion que permite calcular la fecha de los pagos recurrentes       */
-	/*de acuerdo al modelo especificado por el cliente.                       */ 
-	/****************************  MODIFICACIONES  ****************************/
-	/*   FECHA               AUTOR                  RAZON                     */
-	/* 10-6-2016	Christopher Mitchell	Adecuaciones técnicas             */
-	/* 28-7-2016	Christopher Mitchell	Cambio de nombre a paquete        */
-	/**************************************************************************/
+
 package com.bgeneral.canales.pagorecurrente;
 
 import java.time.LocalDate;  
