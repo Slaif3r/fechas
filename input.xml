@@ -1,0 +1,31 @@
+<NS1:EjecutarTransaccionCanalesMsjResp xmlns:NS1="http://xmlns.bgeneral.com/MensajeIntegracion/DominioCanal/Canal/V1" xmlns:NS2="http://xmlns.bgeneral.com/ObjetoEmpresarial/DominioComun/Comun/V1" xmlns:NS3="http://xmlns.bgeneral.com/ObjetoEmpresarial/DominioComun/ComunBanco/V1">
+	<NS1:CabeceraResp>
+		<NS2:EstadoGeneral>
+			<NS2:Codigo>U0000</NS2:Codigo>
+			<NS2:Descripcion>Se ha realizado la ejecución del servicio correctamente.</NS2:Descripcion>
+			<NS2:Nombre>CrearAutorizacionTransaccionCobis</NS2:Nombre>
+			<NS2:Severidad>0</NS2:Severidad>
+			<NS2:TipoEstado>Información</NS2:TipoEstado>
+		</NS2:EstadoGeneral>
+		<NS2:EstadosPorRegistro>
+			<NS2:Estado>
+				<NS2:Codigo>U0000</NS2:Codigo>
+				<NS2:Descripcion>Se ha realizado la ejecución del servicio correctamente.</NS2:Descripcion>
+				<NS2:Nombre>CrearAutorizacionTransaccionCobis</NS2:Nombre>
+				<NS2:Severidad>0</NS2:Severidad>
+				<NS2:TipoEstado>Información</NS2:TipoEstado>
+			</NS2:Estado>
+		</NS2:EstadosPorRegistro>
+	</NS1:CabeceraResp>
+	<NS1:ResultadoTransacciones>
+		<NS1:ResultadoTransaccion>
+			<NS3:EstadoTransaccion>
+				<NS3:Codigo>PA</NS3:Codigo>
+			</NS3:EstadoTransaccion>
+			<NS3:EstadoAuditoria>E</NS3:EstadoAuditoria>
+			<NS3:SecuenciaTransaccion>1</NS3:SecuenciaTransaccion>
+			<NS3:NumTransaccionTipo>24040</NS3:NumTransaccionTipo>
+			<NS3:CodigoAutorizacion>7675</NS3:CodigoAutorizacion>
+		</NS1:ResultadoTransaccion>
+	</NS1:ResultadoTransacciones>
+</NS1:EjecutarTransaccionCanalesMsjResp>
