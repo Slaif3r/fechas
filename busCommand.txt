@@ -1,0 +1,19 @@
+
+mqsicreateexecutiongroup BRK -e IServer
+mqsireportproperties BG_IBUSBEL02 -e BG_CBL_CC_002 -o ComIbmCacheManager -r   //reporte de los puertos
+
+mqsichangeproperties BG_IBUSBEL02 -e serverGrPru -o ComIbmCacheManager -n connectionEndPoints -v "localhost:2850"
+
+mqsichangeproperties BG_IBUSBEL02 -e serverGrPru -o ComIbmCacheManager -n catalogClusterEndPoints -v "BG_IBUSBEL02_localhost_2850:localhost:2853:2851"
+
+
+declare -a numeros="$(ls)"
+echo${numeros[@]}
+
+
+OUTPUT="$(mqsireportproperties BG_IBUSBEL02 -e BG_CBL_CC_002 -o ComIbmCacheManager -r)"
+echo $OUTPUT
+
+
+
+
